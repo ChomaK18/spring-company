@@ -1,12 +1,15 @@
-package com.learning.Company.entity;
+package com.learning.company.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
 @Entity
+@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class EmployeeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue()
     private Long id;
     @Column(name = "NAME", length = 50, nullable = false)
     private String name;

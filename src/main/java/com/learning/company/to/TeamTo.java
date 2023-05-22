@@ -1,4 +1,4 @@
-package com.learning.Company.to;
+package com.learning.company.to;
 
 import java.util.Set;
 

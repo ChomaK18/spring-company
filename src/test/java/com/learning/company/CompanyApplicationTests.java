@@ -1,4 +1,4 @@
-package com.learning.Company;
+package com.learning.company;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

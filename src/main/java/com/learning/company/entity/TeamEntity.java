@@ -1,6 +1,7 @@
-package com.learning.Company.entity;
+package com.learning.company.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import java.util.Set;
 @Table(name = "TEAM")
 public class TeamEntity {
 
+    @Id
     @Column(name = "NAME", length = 50, nullable = false)
     private String name;
 
@@ -15,14 +17,14 @@ public class TeamEntity {
     @JoinTable(name = "TEAM_TO_EMPLOYEE",
             joinColumns = @JoinColumn(name = "TEAM_NAME"),
             inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
-    private Set<EmployeeEntity> employeeEntities;
+    private Set<EmployeeEntity> employeeEntityEntities;
 
     public TeamEntity() {
     }
 
-    public TeamEntity(String name, Set<EmployeeEntity> employeeEntities) {
+    public TeamEntity(String name, Set<EmployeeEntity> employeeEntityEntities) {
         this.name = name;
-        this.employeeEntities = employeeEntities;
+        this.employeeEntityEntities = employeeEntityEntities;
     }
 
     public String getName() {
@@ -34,11 +36,11 @@ public class TeamEntity {
     }
 
     public Set<EmployeeEntity> getEmployees() {
-        return employeeEntities;
+        return employeeEntityEntities;
     }
 
-    public void setEmployees(Set<EmployeeEntity> employeeEntities) {
-        this.employeeEntities = employeeEntities;
+    public void setEmployees(Set<EmployeeEntity> employeeEntityEntities) {
+        this.employeeEntityEntities = employeeEntityEntities;
     }
 
     @Override
@@ -46,11 +48,11 @@ public class TeamEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TeamEntity teamEntity = (TeamEntity) o;
-        return Objects.equals(name, teamEntity.name) && Objects.equals(employeeEntities, teamEntity.employeeEntities);
+        return Objects.equals(name, teamEntity.name) && Objects.equals(employeeEntityEntities, teamEntity.employeeEntityEntities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, employeeEntities);
+        return Objects.hash(name, employeeEntityEntities);
     }
 }

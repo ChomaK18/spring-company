@@ -1,4 +1,4 @@
-package com.learning.Company.to;
+package com.learning.company.to;
 
 import java.time.LocalDate;
 
@@ -8,6 +8,7 @@ public class ActiveEmployeeTo extends EmployeeTo {
     private LocalDate dateEmployment;
 
     public ActiveEmployeeTo() {
+        super();
     }
 
     public ActiveEmployeeTo(Long id, String name, Double salary, LocalDate dateEmployment) {

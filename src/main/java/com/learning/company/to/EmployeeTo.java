@@ -1,7 +1,6 @@
-package com.learning.Company.to;
+package com.learning.company.to;
 
 public class EmployeeTo {
-
     private Long id;
     private String name;
 
@@ -28,6 +27,4 @@ public class EmployeeTo {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

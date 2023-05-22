@@ -1,6 +1,6 @@
-package com.learning.Company.mapper;
+package com.learning.company.mapper;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface Mapper<T, E> {
@@ -15,15 +15,15 @@ public interface Mapper<T, E> {
      */
     public abstract E map2Entity(T t);
 
-    public default List<T> map2Tos(List<E> list) {
-        return list.stream()
+    public default Set<T> map2Tos(Set<E> set) {
+        return set.stream()
                 .map(this::map2To)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
-    public default List<E> map2Entities(List<T> list) {
-        return list.stream()
+    public default Set<E> map2Entities(Set<T> set) {
+        return set.stream()
                 .map(this::map2Entity)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 }

@@ -1,30 +1,38 @@
-package com.learning.Company.service.impl;
+package com.learning.company.service.impl;
 
-import com.learning.Company.entity.EmployeeEntity;
-import com.learning.Company.mapper.EmployeeMapper;
-import com.learning.Company.repository.EmployeeRepository;
-import com.learning.Company.service.EmployeeService;
-import com.learning.Company.to.EmployeeTo;
+import com.learning.company.entity.EmployeeEntity;
+import com.learning.company.mapper.EmployeeMapper;
+import com.learning.company.repository.EmployeeRepository;
+import com.learning.company.service.EmployeeService;
+import com.learning.company.to.ActiveEmployeeTo;
+import com.learning.company.to.EmployeeTo;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class EmplyeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
 
-    private EmployeeMapper employeeMapper;
+    private EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper;
 
-    public EmplyeeServiceImpl(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
+    public EmplyeeServiceImpl(EmployeeRepository employeeRepository, EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper) {
         this.employeeRepository = employeeRepository;
         this.employeeMapper = employeeMapper;
     }
 
 
     @Override
-    public List<EmployeeTo> findAllEmployees() {
-        return this.employeeMapper.map2Tos(this.employeeRepository.findAll());
+    public Set<EmployeeTo> findAllEmployees() {
+        return this.employeeMapper.map2Tos(new HashSet<>(this.employeeRepository.findAll()));
+    }
+
+    @Override
+    public Set<EmployeeTo> findAllActiveEmployees() {
+        return this.findAllEmployees().stream().filter(employeeTo -> employeeTo instanceof ActiveEmployeeTo).collect(Collectors.toSet());
     }
 
     @Override

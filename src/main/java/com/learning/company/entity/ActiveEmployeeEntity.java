@@ -1,17 +1,26 @@
-package com.learning.Company.entity;
+package com.learning.company.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("ACTIVE")
 public class ActiveEmployeeEntity extends EmployeeEntity {
 
     @Column(name = "SALARY")
     private Double salary;
     @Column(name = "DATE_EMPLOYMENT")
     private LocalDate dateEmployment;
+
+    public ActiveEmployeeEntity(Long id, String name, Double salary, LocalDate dateEmployment) {
+        super(id, name);
+        this.salary = salary;
+        this.dateEmployment = dateEmployment;
+    }
 
     public Double getSalary() {
         return salary;
