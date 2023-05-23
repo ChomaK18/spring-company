@@ -13,13 +13,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class EmplyeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
-    private EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper;
+    private final EmployeeMapper employeeMapper;
 
-    public EmplyeeServiceImpl(EmployeeRepository employeeRepository, EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
         this.employeeMapper = employeeMapper;
     }
@@ -33,13 +33,6 @@ public class EmplyeeServiceImpl implements EmployeeService {
     @Override
     public Set<EmployeeTo> findAllActiveEmployees() {
         return this.findAllEmployees().stream().filter(employeeTo -> employeeTo instanceof ActiveEmployeeTo).collect(Collectors.toSet());
-    }
-
-    @Override
-    public EmployeeTo findEmployeeById(Long id) {
-        return this.employeeRepository.findById(id)
-                .map(employee -> this.employeeMapper.map2To(employee))
-                .orElseThrow(() -> new RuntimeException("Couldn't find book with ID" + id));
     }
 
     @Override

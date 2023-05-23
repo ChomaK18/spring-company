@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
-@Entity
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value="employee")
+@Entity
 public class EmployeeEntity {
     @Id
     @GeneratedValue()
     private Long id;
-    @Column(name = "NAME", length = 50, nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     public EmployeeEntity() {

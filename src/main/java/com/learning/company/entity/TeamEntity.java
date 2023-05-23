@@ -6,11 +6,10 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "TEAM")
 public class TeamEntity {
 
     @Id
-    @Column(name = "NAME", length = 50, nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY)

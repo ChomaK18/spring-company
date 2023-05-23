@@ -5,21 +5,21 @@ import com.learning.company.to.EmployeeTo;
 
 import java.util.Set;
 
-public interface EmployeeMapper<T extends EmployeeTo, E extends EmployeeEntity> extends Mapper<T, E> {
+public interface EmployeeMapper extends Mapper<EmployeeTo, EmployeeEntity> {
 
     @Override
-    T map2To(E e);
+    EmployeeTo map2To(EmployeeEntity e);
 
     @Override
-    E map2Entity(T t);
+    EmployeeEntity map2Entity(EmployeeTo t);
 
     @Override
-    default Set<T> map2Tos(Set<E> set) {
+    default Set<EmployeeTo> map2Tos(Set<EmployeeEntity> set) {
         return Mapper.super.map2Tos(set);
     }
 
     @Override
-    default Set<E> map2Entities(Set<T> set) {
+    default Set<EmployeeEntity> map2Entities(Set<EmployeeTo> set) {
         return Mapper.super.map2Entities(set);
     }
 }

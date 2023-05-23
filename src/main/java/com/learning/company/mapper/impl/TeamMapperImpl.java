@@ -1,10 +1,8 @@
 package com.learning.company.mapper.impl;
 
-import com.learning.company.entity.EmployeeEntity;
 import com.learning.company.entity.TeamEntity;
 import com.learning.company.mapper.EmployeeMapper;
 import com.learning.company.mapper.TeamMapper;
-import com.learning.company.to.EmployeeTo;
 import com.learning.company.to.TeamTo;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +11,9 @@ import java.util.Set;
 @Component
 public class TeamMapperImpl implements TeamMapper {
 
-    private EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper;
+    private final EmployeeMapper employeeMapper;
 
-    public TeamMapperImpl(EmployeeMapper<EmployeeTo, EmployeeEntity> employeeMapper) {
+    public TeamMapperImpl(EmployeeMapper employeeMapper) {
         this.employeeMapper = employeeMapper;
     }
 

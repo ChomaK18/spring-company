@@ -8,13 +8,16 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@DiscriminatorValue("ACTIVE")
+@DiscriminatorValue("activeEmployee")
 public class ActiveEmployeeEntity extends EmployeeEntity {
 
-    @Column(name = "SALARY")
+    @Column
     private Double salary;
-    @Column(name = "DATE_EMPLOYMENT")
+    @Column
     private LocalDate dateEmployment;
+
+    public ActiveEmployeeEntity() {
+    }
 
     public ActiveEmployeeEntity(Long id, String name, Double salary, LocalDate dateEmployment) {
         super(id, name);

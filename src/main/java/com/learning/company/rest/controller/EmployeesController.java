@@ -1,8 +1,8 @@
 package com.learning.company.rest.controller;
 
 import com.learning.company.service.EmployeeService;
+import com.learning.company.to.ActiveEmployeeTo;
 import com.learning.company.to.EmployeeTo;
-import com.learning.company.to.InactiveEmployeeTo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -21,7 +21,7 @@ public class EmployeesController {
         return this.employeeService.findAllEmployees();
     }
 
-    @GetMapping(value = "/activeEmployees")
+    @GetMapping(value = "/active-employees")
     public Set<EmployeeTo> showAllActiveEmployees() {
         return this.employeeService.findAllActiveEmployees();
     }
@@ -32,8 +32,13 @@ public class EmployeesController {
     }
 
     @PostMapping(value = "/employee/save")
-    public EmployeeTo saveEmployee(@RequestBody InactiveEmployeeTo employee) {
+    public EmployeeTo saveEmployee(@RequestBody EmployeeTo employee) {
         return this.employeeService.saveEmployee(employee);
+    }
+
+    @PostMapping(value = "/active-employee/save")
+    public ActiveEmployeeTo saveEmployee(@RequestBody ActiveEmployeeTo employee) {
+        return (ActiveEmployeeTo) this.employeeService.saveEmployee(employee);
     }
 
 }
