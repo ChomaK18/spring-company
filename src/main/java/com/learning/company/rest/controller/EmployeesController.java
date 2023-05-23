@@ -26,17 +26,17 @@ public class EmployeesController {
         return this.employeeService.findAllActiveEmployees();
     }
 
-    @PostMapping(value = "/employee/delete/{id}")
+    @DeleteMapping(value = "/employee/{id}")
     public void deleteEmployee(@PathVariable("id") Long employeeId) {
         this.employeeService.deleteEmployee(employeeId);
     }
 
-    @PostMapping(value = "/employee/save")
+    @PostMapping(value = "/employee")
     public EmployeeTo saveEmployee(@RequestBody EmployeeTo employee) {
         return this.employeeService.saveEmployee(employee);
     }
 
-    @PostMapping(value = "/active-employee/save")
+    @PostMapping(value = "/active-employee")
     public ActiveEmployeeTo saveEmployee(@RequestBody ActiveEmployeeTo employee) {
         return (ActiveEmployeeTo) this.employeeService.saveEmployee(employee);
     }

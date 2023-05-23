@@ -4,13 +4,11 @@ import com.learning.company.entity.EmployeeEntity;
 import com.learning.company.mapper.EmployeeMapper;
 import com.learning.company.repository.EmployeeRepository;
 import com.learning.company.service.EmployeeService;
-import com.learning.company.to.ActiveEmployeeTo;
 import com.learning.company.to.EmployeeTo;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -32,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Set<EmployeeTo> findAllActiveEmployees() {
-        return this.findAllEmployees().stream().filter(employeeTo -> employeeTo instanceof ActiveEmployeeTo).collect(Collectors.toSet());
+        return this.employeeMapper.map2Tos(new HashSet<>(this.employeeRepository.findAllActiveEmployees()));
     }
 
     @Override
